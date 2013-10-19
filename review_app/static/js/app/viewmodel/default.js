@@ -6,10 +6,6 @@ function (ko, loader) {
 
         self.sections = [
             {
-                title: 'Home', 
-                id: 'home'
-            },
-            {
                 title: 'Review', 
                 id: 'review'
             },
