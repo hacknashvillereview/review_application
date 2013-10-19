@@ -26,51 +26,20 @@
         <review-navigation></review-navigation>
 
         <home-module>
-            <review-home-navigation 
+            <home-page 
                 data-bind='visible: $root.currentSection().id === "home"'>
-            </review-home-navigation>
-            <review-dashboard 
-                data-bind='visible: $root.currentSection().id === "home"'>
-            </review-dashboard>
-            <review-results 
-                data-bind='visible: $root.currentSection().id === "home"'>
-            </review-results>
+            </home-page>
         </home-module>
 
+        <review-module>
+            <review-content 
+                data-bind='visible: $root.currentSection().id === "review"'>
+            </review-content>
+        </review-module>
+    </body>
 
-<div id="gConnect">
-    <button class="g-signin"
-        data-scope="https://www.googleapis.com/auth/plus.login"
-        data-requestvisibleactions="http://schemas.google.com/AddActivity"
-        data-clientId="488923777910.apps.googleusercontent.com"
-        data-callback="onSignInCallback"
-        data-theme="dark"
-        data-cookiepolicy="single_host_origin">
-    </button>
-  </div>
-  <div id="authOps" style="display:none">
-    <h2>User is now signed in to the app using Google+</h2>
-    <p>If the user chooses to disconnect, the app must delete all stored
-    information retrieved from Google for the given user.</p>
-    <button id="disconnect" >Disconnect your Google account from this app</button>
 
-    <h2>User's profile information</h2>
-    <div id="profile"></div>
 
-    <h2>User's friends that are visible to this app</h2>
-    <div id="visiblePeople"></div>
-
-    <h2>Authentication Logs</h2>
-    <pre id="authResult"></pre>
-  </div>
-  <div id="loaderror">
-    This section will be hidden by JQuery. If you can see this message, you
-    may be viewing the file rather than running a web server.<br />
-    The sample must be run from http or https. See instructions at
-    <a href="https://developers.google.com/+/quickstart/javascript">
-    https://developers.google.com/+/quickstart/javascript</a>.
-  </div>
-</body>
 <script type="text/javascript">
 var helper = (function() {
   var BASE_API_PATH = 'plus/v1/';

@@ -9,29 +9,28 @@ function (ko, loader, defaultModel) {
     var ModuleDefaultModel = function () {
         var self = this;
 
-        self.subsections = [
-            {
-                id: 'dashboard',
-                title:'Dashboard'
-            },
-            {
-                id: 'results',
-                title: 'Search Results'
-            }
-        ];
-        self.currentSubSection = ko.observable(self.subsections[0]);
+        // self.subsections = [
+        //     {
+        //         id: 'dashboard',
+        //         title:'Dashboard'
+        //     },
+        //     {
+        //         id: 'results',
+        //         title: 'Search Results'
+        //     }
+        // ];
+        // self.currentSubSection = ko.observable(self.subsections[0]);
 
-        self.gotoSubSection = function (subsection) {
-            location.hash = subsection.title;
-            self.currentSubSection(subsection);
-            console.log(self.currentSubSection());
-        };
+        // self.gotoSubSection = function (subsection) {
+        //     location.hash = subsection.id;
+        //     self.currentSubSection(subsection);
+        // };
     };
 
     ModuleDefaultModel.prototype = defaultModel;
     moduleDefaultModel = new ModuleDefaultModel();
 
-    loader.load('review-home-navigation', '/static/views/review/navigation.html', moduleDefaultModel, function () {} );
+    // loader.load('review-home-navigation', '/static/views/review/navigation.html', moduleDefaultModel, function () {} );
 
     return moduleDefaultModel;
 
