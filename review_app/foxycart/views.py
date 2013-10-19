@@ -41,7 +41,7 @@ def foxyfeed(request):
         new_user.save()
 
         logger = logging.getLogger('foxycart')
-        logger.error(transaction.customer_password_salt)
+        # logger.error(transaction.customer_password_salt)
         logger.error(transaction.customer_password)
         
         new_review_user = review_app.models.ReviewUser()
