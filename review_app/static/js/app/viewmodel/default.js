@@ -10,6 +10,10 @@ function (ko, loader) {
                 id: 'home'
             },
             {
+                title: 'Review', 
+                id: 'review'
+            },
+            {
                 title: 'Packages', 
                 id: 'packages'
             }
@@ -17,9 +21,8 @@ function (ko, loader) {
         self.currentSection = ko.observable();
 
         self.gotoSection = function (section) {
-            location.hash = section.title;
+            location.hash = section.id;
             self.currentSection(section);
-            console.log(self.currentSection());
         };
 
         // Take the user to the stacks section

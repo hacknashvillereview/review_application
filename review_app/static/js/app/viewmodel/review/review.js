@@ -7,8 +7,6 @@ define([
     ], 
 function (Q, ko, loader, defaultViewModel, API) {
 
-    require(['app/viewmodel/review/dashboard','app/viewmodel/review/search'], function () {});
-
     var ReviewModel = function () {
         var self = this;
 
