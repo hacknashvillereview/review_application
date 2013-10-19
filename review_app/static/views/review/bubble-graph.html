@@ -1,0 +1,39 @@
+<polymer-element name="bubble-graph" attributes="data-source">
+    <template>
+        
+    </template>
+
+    <script>
+    Polymer('bubble-graph', {
+        created: function () {
+            var vis = d3.select('#chart').append('svg')
+                .attr('width', 500)
+                .attr('height', 500)
+                .attr('style', 'border: 1px solid black')
+                .attr('class', 'bubble');
+
+            $.ajax({
+                url: this['data-source'],
+                type: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                success: function (data, status, response) {
+                    var d, item;
+
+                    for (d in data.topics) {
+                        item = data.topics[d];
+                        vis.append('circle')
+                            .attr('class', 'little')
+                            .attr('cx', Math.random() * 500)
+                            .attr('cy', Math.random() * 500)
+                            .attr('r', item.mentions / 10)
+                            .data(item.mentions)
+                    }
+                }
+            });
+        }
+    });
+    </script>
+</polymer-element>
