@@ -1,0 +1,15 @@
+<dashboard-view data-bind='visible: $root.currentSubSection().id === "review-dashboard"'>
+    <div class="row large-padding bordered">
+        <div class="col-md-3 col-md-offset-9">
+            <div class="btn-group">
+                <button id="view-list" type="button" class="btn btn-default">List</button>
+                <button id="view-grid" type="button" class="btn btn-default">Grid</button>
+                <button id="view-timeline" type="button" class="btn btn-default" data-bind="css: { disabled: true }">Timeline</button>
+            </div>
+        </div>
+    </div>
+    <div class="row x-large-padding">
+        <div class="col-md-6 col-md-offset-1 bordered">Bubble Graph Container</div>
+        <div class="col-md-4 bordered">Topic List Container</div>
+    </div>
+</dashboard-view>

@@ -4,6 +4,7 @@
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
 
+from review_settings import *
 
 ########## PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
@@ -195,10 +196,13 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     # Database migration helpers:
     'south',
+
+    'rest_framework',
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'foxycart',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
