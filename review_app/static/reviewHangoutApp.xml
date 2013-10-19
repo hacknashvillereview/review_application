@@ -43,9 +43,15 @@
 <h3>Simple Hangout App</h3>
 
 <p>
-<input class="button" type="button" value="Show participants!" id="showParticipants" 
+<input class="button" type="button" value="Show participants" id="showParticipants" 
     style="visibility:hidden;"
     onClick="showParticipants()"/>
+</p>
+
+<p>
+<input class="button" type="button" value="Mute participants" id="muteParticipants" 
+    style="visibility:hidden;"
+    onClick="muteParticipants()"/>
 </p>
 
 <div id="participantsDiv"></div>
@@ -77,6 +83,18 @@ function showParticipants() {
   var div = document.getElementById('participantsDiv');
 
   div.innerHTML = retVal;
+}
+
+function muteParticipants() {
+  var participants = gapi.hangout.getParticipants();
+
+  for (var index in participants) {
+    var participant = participants[index];
+
+    if (participant.person) {
+      gapi.hangout.av.muteParticipantMicrophone(participant);
+    }
+  }
 }
 
 function init() {
