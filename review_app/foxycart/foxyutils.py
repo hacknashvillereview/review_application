@@ -48,7 +48,7 @@ class FoxyData:
       self.customer_id = extract_kv_node(node, 'customer_id')
       self.customer_email = extract_kv_node(node, 'customer_email')
       self.customer_password = extract_kv_node(node, 'customer_password')
-      self.customer_password_salt = extract_kv_node(node, 'customer_password_salt')
+      # self.customer_password_salt = extract_kv_node(node, 'customer_password_salt')
  
       self.attributes = attrs = {}
       self.items = items = attrs['items'] = []
