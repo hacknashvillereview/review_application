@@ -1,6 +1,5 @@
 define([
     'q',
-    'app/api/review/settings',
     'app/model/review/models'
 ],
 function (Q, settings, models) {
