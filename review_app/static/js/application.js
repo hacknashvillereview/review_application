@@ -20,6 +20,6 @@ require(['knockout'], function (ko) {
         }
     };
 
-    require(['app/viewmodel/home/main'], function () { });
+    require(['app/viewmodel/review/review'], function () { });
 
 });

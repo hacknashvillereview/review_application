@@ -32,8 +32,17 @@ def foxyfeed(request):
       for transaction in data.transactions:
         
         new_user = User.objects.create_user(transaction.customer_email, transaction.customer_email)
+        # new_user.password = "{algorithm}${iterations}${salt}${password_hash}".format(
+        #  algorithm="pbkdf2_sha256", 
+        #  iterations="10000",
+        #  salt=transaction.customer_password_salt,
+        #  password_hash=transaction.customer_password)
         new_user.password = transaction.customer_password
         new_user.save()
+
+        logger = logging.getLogger('foxycart')
+        # logger.error(transaction.customer_password_salt)
+        logger.error(transaction.customer_password)
         
         new_review_user = review_app.models.ReviewUser()
         new_review_user.user = new_user

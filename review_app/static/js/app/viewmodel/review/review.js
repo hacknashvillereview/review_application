@@ -20,6 +20,8 @@ function (Q, ko, loader, defaultViewModel, API) {
     ReviewModel.prototype = defaultViewModel;
     reviewModel = new ReviewModel();
 
+    loader.load('review-content', '/static/views/review/content.html', reviewModel, function () {} );
+
     return reviewModel;
 
 });
