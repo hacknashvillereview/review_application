@@ -25,4 +25,8 @@ urlpatterns = patterns('',
 
     url(r"^foxycart/", include(foxycart.urls)),
 
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {"template_name": "login.html"}),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
+        {"template_name": "base.html", "next_page": "/"}),
+    url(r"^protected/", 'review_app.views.protected_method', name="protected"),
 )
