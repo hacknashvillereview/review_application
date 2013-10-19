@@ -11,5 +11,12 @@ urlpatterns += patterns('',
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     url(r'^helloworld/', HelloWorld.as_view(), name='helloworld'),
+
+    url(r'^reviewSession/$', ReviewSessionList.as_view(), name="reviewSession"),
+    url(r'^reviewSession/(?P<pk>[0-9]+)/$', ReviewSessionDetail.as_view(), name="reviewsession-detail"),
+
+    url(r'^feedback/$', FeedbackItemList.as_view(), name="feedback"),
+    url(r'^feedback/(?P<pk>[0-9]+)/$', FeedbackItemDetail.as_view(), name="feedbackitem-detail"),
+
 )
 

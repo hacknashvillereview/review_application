@@ -16,3 +16,7 @@ build
 
 # Logs:
 *.log
+
+# IDE
+.idea
+*.iml
