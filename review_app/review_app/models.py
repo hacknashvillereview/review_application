@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 #from review_app.auth.models import ReviewUser
 
 # Create your models here.
@@ -15,4 +16,10 @@ class FeedbackItem(models.Model):
     when = models.DateTimeField()
     text = models.CharField(max_length=4096)
 
+class ReviewUser(models.Model):
+
+    user = models.OneToOneField(User)
+
+    # foxycart customer id
+    customer_id = models.IntegerField()
 
