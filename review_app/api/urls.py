@@ -12,11 +12,13 @@ urlpatterns += patterns('',
 
     url(r'^helloworld/', HelloWorld.as_view(), name='helloworld'),
 
-    url(r'^reviewSession/$', ReviewSessionList.as_view(), name="reviewSession"),
+    url(r'^reviewSession/$', ReviewSessionList.as_view(), name="reviewsession"),
     url(r'^reviewSession/(?P<pk>[0-9]+)/$', ReviewSessionDetail.as_view(), name="reviewsession-detail"),
 
-    url(r'^feedback/$', FeedbackItemList.as_view(), name="feedback"),
+    url(r'^feedback/$', FeedbackItemList.as_view(), name="feedbackitem"),
     url(r'^feedback/(?P<pk>[0-9]+)/$', FeedbackItemDetail.as_view(), name="feedbackitem-detail"),
 
+    url(r'^user/$', ReviewUserList.as_view(), name="reviewuser"),
+    url(r'^user/(?P<pk>[0-9]+)/$', ReviewUserDetail.as_view(), name="reviewuser-detail"),
 )
 

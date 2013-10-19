@@ -1,8 +1,8 @@
-from review_app.models import ReviewSession, FeedbackItem
+from review_app.models import ReviewSession, FeedbackItem, ReviewUser
 from rest_framework import serializers
 
 
-class ReviewSessionSerializer(serializers.ModelSerializer):
+class ReviewSessionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ReviewSession
 
@@ -10,3 +10,9 @@ class ReviewSessionSerializer(serializers.ModelSerializer):
 class FeedbackItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = FeedbackItem
+
+
+class ReviewUserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ReviewUser
+        fields = ('id', 'customer_id')

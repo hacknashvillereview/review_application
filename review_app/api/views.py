@@ -3,12 +3,12 @@
 from django.http import HttpResponse
 
 from rest_framework.views import APIView
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.reverse import reverse
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
-from api.serializers import ReviewSessionSerializer, FeedbackItemSerializer
-from review_app.models import ReviewSession, FeedbackItem
+from api.serializers import ReviewSessionSerializer, FeedbackItemSerializer, ReviewUserSerializer
+from review_app.models import ReviewSession, FeedbackItem, ReviewUser
 
 
 class ApiRoot(APIView):
@@ -22,10 +22,13 @@ class ApiRoot(APIView):
                 'helloworld': reverse("helloworld", request=request),
             },
             'reviewSession': {
-                'reviewSession': reverse("reviewSession", request=request),
+                'reviewSession': reverse("reviewsession", request=request),
                 },
             'feedback': {
-                'feedback': reverse("feedback", request=request),
+                'feedback': reverse("feedbackitem", request=request),
+            },
+            'user': {
+                'user': reverse("reviewuser", request=request),
             },
         })
 
@@ -40,6 +43,7 @@ class HelloWorld(APIView):
 class ReviewSessionList(generics.ListCreateAPIView):
     queryset = ReviewSession.objects.all()
     serializer_class = ReviewSessionSerializer
+    filter_fields = ('facilitator',)
 
 
 class ReviewSessionDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -50,8 +54,20 @@ class ReviewSessionDetail(generics.RetrieveUpdateDestroyAPIView):
 class FeedbackItemList(generics.ListCreateAPIView):
     queryset = FeedbackItem.objects.all()
     serializer_class = FeedbackItemSerializer
+    filter_fields = ('session', 'who',)
 
 
 class FeedbackItemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = FeedbackItem.objects.all()
     serializer_class = FeedbackItemSerializer
+
+
+class ReviewUserList(generics.ListAPIView):
+    queryset = ReviewUser.objects.all()
+    serializer_class = ReviewUserSerializer
+
+
+class ReviewUserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ReviewUser.objects.all()
+    serializer_class = ReviewUserSerializer
+
