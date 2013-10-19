@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-8">
+        <ul class="nav nav-pills" data-bind="foreach: subsections">
+            <li data-bind="css: { active: $data == $root.currentSubSection() }, click: $root.gotoSubSection">
+                <a href="#" data-bind="text: $data.title"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <input id="search_criteria" type="text" class="input-small form-control" placeholder="I want to find...">
+            </div>
+            <button type="button" class="btn btn-inverse">Search</button>
+        </form>
+    </div>
+</div>
