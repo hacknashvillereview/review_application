@@ -5,7 +5,7 @@
         <title>Review | by Hack Nashvillians</title>
 
         <link href="{% static 'js/bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
-        <link rel="stylesheet/css" type="text/css" href="{% static 'css/review.css' %}" />
+        <link href="{% static 'css/review.css' %}" rel="stylesheet">
 
         <script src="{% static 'js/bower_components/less/dist/less-1.4.2.min.js' %}"></script>
         <script data-main="{% static 'js/application' %}" src="{% static 'js/bower_components/requirejs/require.js' %}"></script>
@@ -22,24 +22,28 @@
         </script>
     </head>
     <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Review</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav pull-right">
+                <li><a href="{% static '/review' %}">Sign in</a></li>
+                <li class="sign-up"><button type="submit" class="btn btn-success">Sign up</button></li>
+                
+              </ul>
+            </div><!--/.navbar-collapse -->
+          </div>
+        </div>
 
-        <review-navigation></review-navigation>
-
-        <home-module>
-            <home-page 
-                data-bind='visible: $root.currentSection().id === "home"'>
-            </home-page>
-        </home-module>
-
-        <review-module>
-            <review-content 
-                data-bind='visible: $root.currentSection().id === "review"'>
-            </review-content>
-        </review-module>
-
-
-
-
+        {% block content %}
+        {% endblock %}
         
     </body>
 
