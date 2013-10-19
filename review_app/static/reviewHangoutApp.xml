@@ -57,6 +57,9 @@
 <script>
 function showParticipants() {
   var participants = gapi.hangout.getParticipants();
+  var isOnAir = gapi.hangout.onair.isOnAirHangout();
+
+  console.log('isOnAir', isOnAir);
 
   var retVal = '<p>Participants: </p><ul>';
 
