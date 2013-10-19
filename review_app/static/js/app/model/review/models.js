@@ -1,5 +1,5 @@
-define(['app/model/review/concept'], function (ConceptModel) {
+define(['app/model/review/participant'], function (ParticipantModel) {
     return {
-        Concept: ConceptModel
+        Participant: ParticipantModel
     }
 });

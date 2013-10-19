@@ -1,6 +1,6 @@
-define(["app/api/review/concepts"], function (concepts) {
+define(["app/api/review/participants"], function (participants) {
 
     return {
-        Concepts: concepts
+        Participants: participants
     }
 });
