@@ -5,6 +5,7 @@ Example Django view for receiving and decrypting datafeed.
 import os
 import sys
 import codecs
+import logging
  
 import urllib
 from django.http import *
@@ -41,6 +42,12 @@ def capture_foxyfeed(request):
   save_request_object = True
   allow_overwrite = False
   capture_dir =  os.path.join(os.path.dirname(__file__), "fixtures")
+
+  logger = logging.getLogger('foxycart')
+  logger.error(capture_dir)
+
+  #print capture_dir
+
   if save_request_object:
     capture_file_path = os.path.join(capture_dir, capture_name + '.request')
     f = open(capture_file_path, 'w')
