@@ -17,6 +17,8 @@ import review_app
  
 from foxyutils import FoxyData
 
+PASSWORD_ALGORITHM = "sha1"
+
 @csrf_exempt
 def foxyfeed(request):
   """
@@ -30,28 +32,27 @@ def foxyfeed(request):
       # FoxyCart sends.
       data = FoxyData.from_crypted_str(urllib.unquote_plus(request.POST['FoxyData']), settings.FOXYCART_DATAFEED_KEY)
       for transaction in data.transactions:
-        
+
+        # create a new django user
         new_user = User.objects.create_user(transaction.customer_email, transaction.customer_email)
         new_user.password = "{algorithm}${salt}${password_hash}".format(
-          algorithm="sha1", 
+          algorithm=PASSWORD_ALGORITHM, 
           salt=transaction.customer_password_salt,
           password_hash=transaction.customer_password)
         new_user.save()
 
-        logger = logging.getLogger('foxycart')
-        logger.error(transaction.customer_password_salt)
-        logger.error(transaction.customer_password)
-        
+        # create a new review user
         new_review_user = review_app.models.ReviewUser()
         new_review_user.user = new_user
         new_review_user.customer_id = transaction.customer_id
         new_review_user.save()
 
+        # @todo sanity checks etc bf actually saving everything
+
         # Your code goes here
         # Make sure we don't have a duplicate transaction id
         # Verify the pricing of the products
         # Add the order to the database
-        pass
  
       return HttpResponse('foxy')
  
