@@ -46,6 +46,8 @@ class FoxyData:
       self.date = datetime.strptime(
        extract_kv_node(node, 'transaction_date'), FoxyData.DateTimeFmt)
       self.customer_id = extract_kv_node(node, 'customer_id')
+      self.customer_email = extract_kv_node(node, 'customer_email')
+      self.customer_password = extract_kv_node(node, 'customer_password')
  
       self.attributes = attrs = {}
       self.items = items = attrs['items'] = []
