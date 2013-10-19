@@ -38,6 +38,10 @@ def foxyfeed(request):
           salt=transaction.customer_password_salt,
           password_hash=transaction.customer_password)
         new_user.save()
+
+        logger = logging.getLogger('foxycart')
+        logger.error(transaction.customer_password_salt)
+        logger.error(transaction.customer_password)
         
         new_review_user = review_app.models.ReviewUser()
         new_review_user.user = new_user
