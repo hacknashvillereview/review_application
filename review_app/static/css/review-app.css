@@ -79,6 +79,7 @@ body.package-archive .row {
 	border-bottom:10px solid #aaa;
 	cursor:pointer;
 	height:200px;
+	overflow:hidden;
 	position:relative;
 	transition: background-color 0.25s ease;
 }
