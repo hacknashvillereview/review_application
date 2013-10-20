@@ -344,7 +344,7 @@
         -->
       <div class="btn-group pull-right">
         <button id="startPresenting" style="visibility:hidden;" onClick="startPresenting()" type="button" class="btn btn-default active"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;Present</button>
-        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Collaborate</button>
+        <button type="button" class="btn btn-default" onClick="startCollaboration()"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Collaborate</button>
       </div>
     </div>
     <div id="video_presenter">
@@ -480,6 +480,10 @@ function displayPresenterName(name) {
     div.innerHTML = '<p style="color:white; font-size:23px; margin: 0px; padding: 0px;">' +  name + ' is now the presenter</p>';
 }
 
+function startCollaboration() {
+  var participant = gapi.hangout.getLocalParticipantId();
+  gapi.hangout.data.setValue('collaborate', participant);
+}
 
 function init() {
   // When API is ready... 
@@ -525,6 +529,9 @@ function init() {
       raisedHandHandler(payload.addedKeys[0].value);
     } else if (payload.addedKeys[0].key === 'somethingIsWrong') {
       somethingIsWrongHandler(payload.addedKeys[0].value);
+    } else if (payload.addedKeys[0].key === 'collaborate') {
+      gapi.hangout.av.setMicrophoneMute(false);
+      gapi.hangout.av.setCameraMute(false);
     }
   });
 
