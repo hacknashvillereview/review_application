@@ -541,7 +541,7 @@ raisedHandHandler = function (participantId) {
   var person = gapi.hangout.getParticipantById(participantId);
 
   var ul = document.getElementById('participantAlerts');
-  ul.innerHTML += "<li class=\"list-group-item\">"+person.person.displayName+" raised a hand!</li>";
+  ul.innerHTML += "<li class=\"list-group-item question\">"+person.person.displayName+" raised a hand!</li>";
 
 };
 
