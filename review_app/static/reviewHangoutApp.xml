@@ -344,7 +344,7 @@
         -->
       <div class="btn-group pull-right">
         <button id="startPresenting" onClick="startPresenting()" type="button" class="btn btn-default active"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;Present</button>
-        <button type="button" class="btn btn-default" onClick="startCollaboration()"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Collaborate</button>
+        <button id="startCollaboration" type="button" class="btn btn-default" onClick="startCollaboration()"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Collaborate</button>
       </div>
     </div>
     <div id="video_presenter">
@@ -473,6 +473,8 @@ function makePresenter (participantId) {
 function startPresenting() {
   var participant = gapi.hangout.getLocalParticipantId();
   gapi.hangout.data.setValue('tookControl', participant);
+  jQuery('#startPresenting').addClass('active');
+  jQuery('#startCollaboration').removeClass('active');
 }
 
 function displayPresenterName(name) {
@@ -483,6 +485,8 @@ function displayPresenterName(name) {
 function startCollaboration() {
   var participant = gapi.hangout.getLocalParticipantId();
   gapi.hangout.data.setValue('collaborate', participant);
+  jQuery('#startPresenting').removeClass('active');
+  jQuery('#startCollaboration').addClass('active');  
 }
 
 function init() {
