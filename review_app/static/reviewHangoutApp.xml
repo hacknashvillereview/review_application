@@ -211,13 +211,13 @@
       }
 
       #video_presenter {
-        marigin: 0 auto 20px;
+        margin: 0 auto 20px;
         width:150px;
         height:80px;
       }
 
       #video_attendee {
-        marigin: 0 auto 20px;
+        margin: 0 auto 20px;
         width: 400px;
         height: 230px;
       }
