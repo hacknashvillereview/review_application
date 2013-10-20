@@ -24,7 +24,7 @@
     <![endif]-->
   </head>
 
-  <body class="package-archive">
+  <body class="single-package">
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -45,26 +45,33 @@
     </div>
 
     <div class="container">
-        <div class="section-header">
-            <h1>My previous reviews</h1>
-        </div>
         <div class="row">
-          <div class="col-md-3 add package">
-            <div class="package-content">
-                <p>+</p>
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-8">
+            <div class="section-header">
+                <p><a href="/packages">Back to reviews</a></p>
+                <h1>{{ package.title }}<small>{{ package.start|date:"l, F dS, Y" }}</small></h1>
             </div>
-            <p>Create a new session.</p>
-          </div>
-            {% for package in packages %}
-          <div class="col-md-3 package">
-            <a href="../package/{{ package.id }}"><div class="package-content" style="background:url( 'http://img.youtube.com/vi/{{ package.youtube_id }}/0.jpg' ); background-size:265px ;">
-                <!-- http://img.youtube.com/vi/{{ package.youtube_id }}/0.jpg -->
-                <h2>{{ package.title }}</h2>
-                <span class="glyphicon glyphicon-play-circle"></span>
-            </div></a>
-            <p>{{ package.start|date:"l, F dS, Y" }}</p>
-          </div>
+            <iframe title="YouTube video player" class="youtube-player" type="text/html"
+                    width="750" height="457" src="http://www.youtube.com/embed/{{ package.youtube_id }}"
+                    frameborder="0" allowFullScreen></iframe>
+            <div class="demos">
+            {% for demo in package.demo.all %}
+              <h2>{{ demo.title }}&nbsp;<small>{{ demo.start_offset }}-{{ demo.end_offset }}</small></h2>
+              <a href="{{ demo.review_notes_url }}" class="btn btn-success pull-right release-notes" target="_blank">Release Notes</a>
+              <div class="feedback">
+                <ul>
+                    {% for feedback in demo.feedback.all %}
+                        <li><strong>{{ feedback.who }}</strong> <span>@ {{ feedback.offset }}</span><br>{{ feedback.text }}</li>
+                    {% endfor %}
+                </ul>
+              </div>
             {% endfor %}
+            </div>
+          </div>
+          <div class="col-md-2">
+          </div>
         </div>
     </div> <!-- /container -->
     <footer>
