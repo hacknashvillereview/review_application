@@ -107,6 +107,19 @@ var defaultGlobalState = {
   'releaseNotesUrl':''
 }
 
+function isPresenter() {
+  console.log(gapi.hangout.data.getValue('presenterId'));
+  console.log(gapi.hangout.getLocalParticipantId()); 
+  return (gapi.hangout.data.getValue('presenterId') == gapi.hangout.getLocalParticipantId());
+}
+
+function updateLayout() {
+  if (isPresenter()) {
+    console.log('I\'m the presenter!');
+  } else {
+    console.log('I\'m a participant!');
+  }
+}
 
 function init() {
   // When API is ready...                                                         
@@ -116,17 +129,18 @@ function init() {
           document.getElementById('showParticipants').style.visibility = 'visible';
           document.getElementById('muteParticipants').style.visibility = 'visible';
 
-          globalState = gapi.hangout.data.getState();
-          console.log(globalState);
+          var globalPresenterId = gapi.hangout.data.getValue('presenterId');
+          console.log(globalPresenterId);
 
           // set defaults if globalState is empty
-          gapi.hangout.data.setValue('presenterId',gapi.hangout.data.getLocalParticipantId());
+          gapi.hangout.data.setValue('presenterId',gapi.hangout.getLocalParticipantId());
           gapi.hangout.data.setValue('isPresenting',false);
           gapi.hangout.data.setValue('isPaused',true);
           gapi.hangout.data.setValue('releaseNotesUrl','');
 
-          globalState = gapi.hangout.data.getState();
-          console.log(globalState);
+          updateLayout();
+
+          gapi.hangout.data.onStateChanged.add('updateLayout');
 
         }
       });
