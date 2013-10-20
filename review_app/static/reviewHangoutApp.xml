@@ -475,9 +475,14 @@ function startPresenting() {
   gapi.hangout.data.setValue('tookControl', participant);
 }
 
+function displayPresenterName(name) {
+    var div = document.getElementById('ownerDiv');
+    div.innerHTML = '<p style="color:white; font-size:23px; margin: 0px; padding: 0px;">' +  name + ' is now the presenter</p>';
+}
+
+
 function init() {
   // When API is ready... 
-
 
   gapi.hangout.data.onStateChanged.add(function (payload) {
     var div = document.getElementById('ownerDiv');
@@ -490,17 +495,17 @@ function init() {
 
     // Someone was set as the presenter
     if (payload.addedKeys[0].key === 'isPresenter') {
-      div.innerHTML = '<p style="color:white; font-size:23px; margin: 0px; padding: 0px;">' +  person.person.displayName + ' is now the presenter</p>';
 
       iAmPresenter = (payload.addedKeys[0].value === participant);
 
-      if (payload.addedKeys[0].value === participant) {
-        document.getElementById('startPresenting').style.visibility = 'visible';
-        document.getElementById('raiseHand').style.visibility = 'hidden';
+      if (iAmPresenter) {
+        displayPresenterName(person.person.displayName);
+        //document.getElementById('startPresenting').style.visibility = 'visible';
+        //document.getElementById('raiseHand').style.visibility = 'hidden';
         enablePresenterVideo(payload.addedKeys[0].value, iAmPresenter);
       } else {
-        document.getElementById('startPresenting').style.visibility = 'hidden';
-        document.getElementById('raiseHand').style.visibility = 'visible';
+        //document.getElementById('startPresenting').style.visibility = 'hidden';
+        //document.getElementById('raiseHand').style.visibility = 'visible';
         enablePresenterVideo(payload.addedKeys[0].value, !iAmPresenter);
       }
 
@@ -510,6 +515,7 @@ function init() {
         gapi.hangout.av.setMicrophoneMute(true);
         gapi.hangout.av.setCameraMute(true);
       } else {
+        displayPresenterName(person.person.displayName);
         gapi.hangout.av.setMicrophoneMute(false);
         gapi.hangout.av.setCameraMute(false);
       }
@@ -524,6 +530,12 @@ function init() {
 
 
   gapi.hangout.onApiReady.add(function(eventObj) {
+        if (eventObj.isApiReady) {
+          showParticipants();
+        }
+  });
+
+  gapi.hangout.onEnabledParticipantsChanged.add(function(eventObj) {
         if (eventObj.isApiReady) {
           showParticipants();
         }
