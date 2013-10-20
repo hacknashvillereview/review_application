@@ -1,0 +1,31 @@
+
+{% if not user.is_authenticated %}
+<p>Welcome, new user. Please <a href="/accounts/login">log in</a>.</p>
+{% else %}
+<p>Welcome, <b>{{ user.username }}</b>. Thanks for logging in.</p>
+
+{% for package in packages %}
+<h2>{{ package.title }}</h2>
+<h3>{{ package.start }}</h3>
+<h3>{{ package.end }}</h3>
+    <ul>
+
+    {% for demo in package.demo.all %}
+        <li>{{ demo.title }}</li>
+        <ul>
+            <li>{{ demo.review_notes_url }}</li>
+            <li>{{ demo.start }}</li>
+            <li>{{ demo.end }}</li>
+            <dl>
+        {% for feedback in demo.feedback.all %}
+                <dt>{{ feedback.who }} :: {{ feedback.when }}</dt>
+                <dd>{{ feedback.text }}</dd>
+        {% endfor %}
+            </dl>
+        </ul>
+    {% endfor %}
+    </ul>
+{% endfor %}
+
+{% endif %}
+
