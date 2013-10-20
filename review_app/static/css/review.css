@@ -18,7 +18,7 @@ body {
 
 .jumbotron {
 	background:url( '/static/images/home-bg.jpg' ) center -150px #aaa;
-	padding-top:40px;
+	padding-top:25px;
 	padding-bottom:0;
 	position:fixed;
 	right:0;
@@ -33,11 +33,11 @@ body {
 }
 
 .jumbotron img {
+	border:1px solid #aaa;
 	background:#444;
 	display:block;
 	margin:50px auto 0 auto;
-	width:700px;
-	height:300px;
+	max-width:100%
 }
 
 .btn.get-started {
@@ -46,7 +46,7 @@ body {
 
 .main-content {
 	background-color:white;
-	margin-top:450px;
+	margin-top:680px;
 	padding-bottom:40px;
 	width:100%;
 }
@@ -186,6 +186,9 @@ body.package {
 		float:left;
 		width:33.3%;
 	}
+	.main-content {
+		margin-top:640px;
+	}
 }
 
 @media (max-width: 991px) {
@@ -196,5 +199,11 @@ body.package {
 	}
 	.col-lg-4 h2 {
 		text-align:center;
+	}
+}
+
+@media (max-width: 450px) {
+	.main-content {
+		margin-top:505px;
 	}
 }
