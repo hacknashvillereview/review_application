@@ -46,8 +46,8 @@
 <style>
       /* Move down content because we have a fixed navbar that is 50px tall */
       body {
-        padding-top: 50px;
-        padding-bottom: 20px;
+        padding-top: 0px;
+        padding-bottom: 0px;
       }
 
       .sign-up {
@@ -99,7 +99,7 @@
       */
 
       .package {
-        margin-top:30px;
+        margin-top:0px;
       }
 
       .add .package-content {
@@ -434,12 +434,12 @@ function enablePresenterVideo(presenter_id) {
     jQuery("#attendee").hide();
     var position = jQuery("#video_presenter").position();
     canvas.setPosition(position.left, position.top);
-    canvas.setHeight(150);
+    canvas.setHeight(80);
     canvas.setWidth(150);
   } else {
     jQuery("#attendee").show();
     jQuery("#presenter").hide();
-    canvas.setHeight(400);
+    canvas.setHeight(230);
     canvas.setWidth(400);
     var position = jQuery("#video_attendee").position();
     canvas.setPosition(position.left, position.top);
