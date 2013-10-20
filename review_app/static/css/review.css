@@ -177,7 +177,15 @@ body.package {
 	color:#ccc;
 }
 
+/*
+	FoxyCart Checkout and Receipt Styles
+*/
 
+#fc_receipt_container, #fc_checkout_container {
+	padding-top: 50px;
+	margin-top: 50px;
+	padding-bottom: 0px;
+}
 
 /*
 	Media Queries
