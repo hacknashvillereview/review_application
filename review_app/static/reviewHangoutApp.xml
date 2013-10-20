@@ -429,13 +429,20 @@ function enablePresenterVideo(presenter_id) {
   canvas = gapi.hangout.layout.getVideoCanvas();
   presenter_feed = gapi.hangout.layout.createParticipantVideoFeed(presenter_id);
   canvas.setVideoFeed(presenter_feed);
-  canvas.setPosition(300, 20);
   if (is_presenter_view) {
+    jQuery("#attendee").hide();
+    var position = jQuery("#video_attendee").position();
+    canvas.setPosition(position.left, position.top);
     canvas.setHeight(150);
     canvas.setWidth(150);
+    jQuery("#presenter").show();
   } else {
+    jQuery("#presenter").hide();
     canvas.setHeight(400);
     canvas.setWidth(400);
+    var position = jQuery("#video_presenter").position();
+    canvas.setPosition(position.left, position.top);
+    jQuery("#attendee").show();
   }
   canvas.setVisible(true);
 }
@@ -465,14 +472,6 @@ function showParticipants() {
 function makePresenter (participantId) {
   var participant = gapi.hangout.getLocalParticipantId();
   var iAmPresenter = (participantId === participant);
-
-  if (iAmPresenter) {
-    jQuery("#video_attendee").hide();
-    jQuery("#video_presenter").show();
-  } else {
-    jQuery("#video_attendee").show();
-    jQuery("#video_presenter").hide();
-  }
 
   console.log('Giving control to ', participantId);
   gapi.hangout.data.setValue('isPresenter', participantId);
