@@ -432,7 +432,7 @@ function enablePresenterVideo(presenter_id) {
   if (is_presenter_view) {
     jQuery("#presenter").show();
     jQuery("#attendee").hide();
-    var position = jQuery("#video_attendee").position();
+    var position = jQuery("#video_presenter").position();
     canvas.setPosition(position.left, position.top);
     canvas.setHeight(150);
     canvas.setWidth(150);
@@ -441,7 +441,7 @@ function enablePresenterVideo(presenter_id) {
     jQuery("#presenter").hide();
     canvas.setHeight(400);
     canvas.setWidth(400);
-    var position = jQuery("#video_presenter").position();
+    var position = jQuery("#video_attendee").position();
     canvas.setPosition(position.left, position.top);
   }
   canvas.setVisible(true);
