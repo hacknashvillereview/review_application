@@ -40,32 +40,51 @@
 
 <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
 
-<h3>Simple Hangout App</h3>
+<h3>Hack Nashville Review Hangout App</h3>
 
 <p>
-<input class="button" type="button" value="Show participants" id="showParticipants" 
+<input class="button" type="button" value="Start Presenting" id="startPresenting" 
     style="visibility:hidden;"
-    onClick="showParticipants()"/>
+    onClick="startPresenting()"/>
 </p>
 
 <p>
-<input class="button" type="button" value="Mute participants" id="muteParticipants" 
-    style="visibility:hidden;"
-    onClick="muteParticipants()"/>
+<input class="button" type="button" value="Raise Hand" id="raiseHand" 
+    onClick="raiseHand()"/>
 </p>
 
 <div id="participantsDiv"></div>
+
+<div id="ownerDiv"></div>
+
+<div id="participantAlerts"></div>
 
 <hr>
 
 <p><a href="http://developers.google.com/+/hangouts/getting-started">Read the docs</a> to learn more about developing hangouts!</a></p>
 
 <script>
+
+
+function enablePresenterVideo(presenter_id) {
+  is_presenter_view = (presenter_id === gapi.hangout.getLocalParticipantId())
+  canvas = gapi.hangout.layout.getVideoCanvas();
+  presenter_feed = gapi.hangout.layout.createParticipantVideoFeed(presenter_id);
+  canvas.setVideoFeed(presenter_feed);
+  canvas.setPosition(300, 20);
+  if (is_presenter_view) {
+    canvas.setHeight(150);
+    canvas.setWidth(150);
+  } else {
+    canvas.setHeight(400);
+    canvas.setWidth(400);
+  }
+  canvas.setVisible(true);
+}
+
 function showParticipants() {
   var participants = gapi.hangout.getParticipants();
   var isOnAir = gapi.hangout.onair.isOnAirHangout();
-
-  console.log('isOnAir', isOnAir);
 
   var retVal = '<p>Participants: </p><ul>';
 
@@ -75,7 +94,7 @@ function showParticipants() {
     if (!participant.person) {
       retVal += '<li>A participant not running this app</li>';
     }
-    retVal += '<li>' + participant.person.displayName + '</li>';
+    retVal += '<li>' + participant.person.displayName + '<button onClick="makePresenter(\''+participant.id+'\')">Make Presenter</button></li>';
   }
 
   retVal += '</ul>';
@@ -85,30 +104,83 @@ function showParticipants() {
   div.innerHTML = retVal;
 }
 
-function muteParticipants() {
-  var participants = gapi.hangout.getParticipants();
+function makePresenter (participantId) {
+  var participant = gapi.hangout.getLocalParticipantId();
+  var iAmPresenter = (participantId === participant);
 
-  for (var index in participants) {
-    var participant = participants[index];
+  console.log('Giving control to ', participantId);
+  gapi.hangout.data.setValue('isPresenter', participantId);
+  enablePresenterVideo(participantId, iAmPresenter);
+}
 
-    console.log(participant);
-
-    if (participant.person) {
-      gapi.hangout.av.muteParticipantMicrophone(participant.id);
-    }
-  }
+function startPresenting() {
+  var participant = gapi.hangout.getLocalParticipantId();
+  gapi.hangout.data.setValue('tookControl', participant);
 }
 
 function init() {
-  // When API is ready...                                                         
-  gapi.hangout.onApiReady.add(
-      function(eventObj) {
+  // When API is ready... 
+
+
+  gapi.hangout.data.onStateChanged.add(function (payload) {
+    var div = document.getElementById('ownerDiv');
+    var participant = gapi.hangout.getLocalParticipantId();
+    var iAmPresenter;
+
+    console.log(payload);
+
+    // Someone was set as the presenter
+    if (payload.addedKeys[0].key === 'isPresenter') {
+      div.innerHTML = '<h3>' +  payload.addedKeys[0].value + ' is now the presenter</h3>';
+
+      iAmPresenter = (payload.addedKeys[0].value === participant);
+
+      if (payload.addedKeys[0].value === participant) {
+        document.getElementById('startPresenting').style.visibility = 'visible';
+        document.getElementById('raiseHand').style.visibility = 'hidden';
+        enablePresenterVideo(payload.addedKeys[0].value, iAmPresenter);
+      } else {
+        document.getElementById('startPresenting').style.visibility = 'hidden';
+        document.getElementById('raiseHand').style.visibility = 'visible';
+        enablePresenterVideo(payload.addedKeys[0].value, !iAmPresenter);
+      }
+
+    // Presenter started the demo. Mute all mics.
+    } else if (payload.addedKeys[0].key === 'tookControl') {
+      if (payload.addedKeys[0].value !== participant) {
+        gapi.hangout.av.setMicrophoneMute(true);
+      } else {
+        gapi.hangout.av.setMicrophoneMute(false);
+      }
+
+    // Someone raised a hand.
+    } else if (payload.addedKeys[0].key === 'raisedHand') {
+      raisedHandHandler(payload.addedKeys[0].value);
+
+    }
+  });
+
+
+  gapi.hangout.onApiReady.add(function(eventObj) {
         if (eventObj.isApiReady) {
-          document.getElementById('showParticipants').style.visibility = 'visible';
-          document.getElementById('muteParticipants').style.visibility = 'visible';
+          showParticipants();
         }
-      });
+  });
 }
+
+raiseHand = function () {
+  var participant = gapi.hangout.getLocalParticipant();
+  gapi.hangout.data.setValue('raisedHand', '');
+  gapi.hangout.data.setValue('raisedHand', participant.id);
+};
+
+
+raisedHandHandler = function (participantId) {
+  var person = gapi.hangout.getParticipantById(participantId);
+
+  var div = document.getElementById('participantAlerts');
+  div.innerHTML += "<div>"+person.person.displayName+" raised a hand!</div>";
+};
 
 // Wait for gadget to load.                                                       
 gadgets.util.registerOnLoadHandler(init);
