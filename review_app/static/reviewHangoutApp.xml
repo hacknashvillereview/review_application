@@ -343,7 +343,7 @@
       <button type="button" class="btn btn-default pull-right pause"><span class="glyphicon glyphicon-pause"></span></button>
         -->
       <div class="btn-group pull-right">
-        <button id="startPresenting" style="visibility:hidden;" onClick="startPresenting()" type="button" class="btn btn-default active"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;Present</button>
+        <button id="startPresenting" onClick="startPresenting()" type="button" class="btn btn-default active"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;Present</button>
         <button type="button" class="btn btn-default" onClick="startCollaboration()"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Collaborate</button>
       </div>
     </div>
@@ -508,6 +508,7 @@ function init() {
         //document.getElementById('raiseHand').style.visibility = 'hidden';
         enablePresenterVideo(payload.addedKeys[0].value, iAmPresenter);
       } else {
+        displayPresenterName(gapi.hangout.getParticipantById(payload.addedKeys[0].value).person.displayName)
         //document.getElementById('startPresenting').style.visibility = 'hidden';
         //document.getElementById('raiseHand').style.visibility = 'visible';
         enablePresenterVideo(payload.addedKeys[0].value, !iAmPresenter);
@@ -516,6 +517,7 @@ function init() {
     // Presenter started the demo. Mute all mics.
     } else if (payload.addedKeys[0].key === 'tookControl') {
       if (payload.addedKeys[0].value !== participant) {
+        displayPresenterName(gapi.hangout.getParticipantById(payload.addedKeys[0].value).person.displayName)
         gapi.hangout.av.setMicrophoneMute(true);
         gapi.hangout.av.setCameraMute(true);
       } else {
