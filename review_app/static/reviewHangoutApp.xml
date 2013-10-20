@@ -401,7 +401,7 @@
         </div>
         <div class="alert-buttons pull-right">
           <button id="raiseHand" onClick="raiseHand()" type="button" class="btn btn-default question-button" style="width:190px;"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;&nbsp;I have a question</button>
-          <button type="button" class="btn btn-default alert-button" style="width:190px;"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;&nbsp;Something is wrong</button>
+          <button id="somethingIsWrong" onClick="somethingIsWrong()" type="button" class="btn btn-default alert-button" style="width:190px;"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;&nbsp;Something is wrong</button>
           <button type="button" class="btn btn-default question-button pull-right send">Send</button>
         </div>
 
@@ -514,7 +514,8 @@ function init() {
     // Someone raised a hand.
     } else if (payload.addedKeys[0].key === 'raisedHand') {
       raisedHandHandler(payload.addedKeys[0].value);
-
+    } else if (payload.addedKeys[0].key === 'somethingIsWrong') {
+      somethingIsWrongHandler(payload.addedKeys[0].value);
     }
   });
 
@@ -532,14 +533,28 @@ raiseHand = function () {
   gapi.hangout.data.setValue('raisedHand', participant.id);
 };
 
+somethingIsWrong = function () {
+  var participant = gapi.hangout.getLocalParticipant();
+  gapi.hangout.data.setValue('somethingIsWrong', '');
+  gapi.hangout.data.setValue('somethingIsWrong', participant.id);
+};
 
 raisedHandHandler = function (participantId) {
   var person = gapi.hangout.getParticipantById(participantId);
 
   var ul = document.getElementById('participantAlerts');
-  ul.innerHTML += "<li class=\"list-group-item alert\">"+person.person.displayName+" raised a hand!</li>";
+  ul.innerHTML += "<li class=\"list-group-item\">"+person.person.displayName+" raised a hand!</li>";
 
 };
+
+somethingIsWrongHandler = function (participantId) {
+  var person = gapi.hangout.getParticipantById(participantId);
+
+  var ul = document.getElementById('participantAlerts');
+  ul.innerHTML += "<li class=\"list-group-item alert\">"+person.person.displayName+" has a problem!</li>";
+
+};
+
 
 // Wait for gadget to load.                                                       
 gadgets.util.registerOnLoadHandler(init);
