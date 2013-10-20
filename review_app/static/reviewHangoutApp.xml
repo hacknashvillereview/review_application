@@ -42,7 +42,7 @@
     </style>
 
     <!-- Custom styles for this template -->
-    <style>
+<style>
       /* Move down content because we have a fixed navbar that is 50px tall */
       body {
         padding-top: 50px;
@@ -251,7 +251,56 @@
         color:#fff;
       }
 
+      #presenter {
+        display:none;
+      }
 
+      .feedback h3 {
+        font-size:18px;
+        font-weight:normal;
+        color:#fff;
+      }
+
+      .textarea {
+        width:75%;
+      }
+
+      .textarea textarea {
+        font-size:20px;
+        padding:20px;
+        width:100%;
+        height:150px;
+      }
+
+      .alert-buttons {
+        text-align:right;
+        width:20%;
+      }
+
+      .alert-buttons button {
+        text-align:left;
+        margin-bottom:10px;
+      }
+
+      .question-button, .alert-button {
+        background:#333;
+        border-color:#888;
+        color:#999;
+      }
+
+      .question-button:hover {
+        background-color:#1e8823;
+        color:#fff;
+      }
+
+      .alert-button:hover {
+        background:#59060f;
+        border-color:#bf1e2e;
+        color:#fff;
+      }
+
+      .send {
+      }
 
       /*
         Media Queries
@@ -282,7 +331,7 @@
   <body class="package">
 
   <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
 
   <div class="container" id="presenter" style="display: none;">
     <div class="actions clearfix">
@@ -352,7 +401,28 @@
 
 
   <div class="container" id="attendee" style="display: none;">
-    I'm Attending!`
+
+      <div class="actions clearfix">
+        <div class="title pull-left">
+          <h3>Thursday team demo day</h3>
+        </div>
+        
+      </div>
+      <div class="video">
+
+      </div>
+      <div class="feedback clearfix">
+        <h3>Send feedback</h3>
+        <div class="textarea pull-left">
+          <textarea></textarea>
+          
+        </div>
+        <div class="alert-buttons pull-right">
+          <button type="button" class="btn btn-default question-button" style="width:190px;"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;&nbsp;I have a question</button>
+          <button type="button" class="btn btn-default alert-button" style="width:190px;"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;&nbsp;Something is wrong</button>
+          <button type="button" class="btn btn-default question-button pull-right send">Send</button>
+        </div>
+
   </div>
 
     <footer>
@@ -422,12 +492,12 @@ function isPresenter() {
 function updateLayout() {
   if (isPresenter()) {
     console.log('I\'m the presenter!');
-    jQuery('#presenter').show();
-    jQuery('#attendee').hide();
+    //jQuery('#presenter').show();
+    //jQuery('#attendee').hide();
   } else {
     console.log('I\'m a participant!');
-    jQuery('#presenter').hide();
-    jQuery('#attendee').show();
+    //jQuery('#presenter').hide();
+    //jQuery('#attendee').show();
   }
 }
 
@@ -436,7 +506,6 @@ function init() {
 
   // set up globals
   var globalPresenterId = gapi.hangout.data.getValue('presenterId');
-  console.log('presenterID = ' + globalPresenterId);
 
   if (typeof(globalPresenterId) == 'undefined') {
     gapi.hangout.data.setValue('presenterId',''+gapi.hangout.getLocalParticipantId());
@@ -444,7 +513,7 @@ function init() {
     gapi.hangout.data.setValue('isPaused','true');
     gapi.hangout.data.setValue('releaseNotesUrl','');
   }
-/*
+
   gapi.hangout.data.onStateChanged.add(function (payload) {
     var div = document.getElementById('ownerDiv');
     var participant = gapi.hangout.getLocalParticipantId();
@@ -472,7 +541,7 @@ function init() {
       }
     }
   });
-*/
+
   gapi.hangout.onApiReady.add(
       function(eventObj) {
         if (eventObj.isApiReady) {
@@ -486,7 +555,6 @@ gadgets.util.registerOnLoadHandler(init);
 </script>
 
   </body>
-</html>
 ]]>
 </Content>
 </Module>
