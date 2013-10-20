@@ -213,8 +213,8 @@
       #video_presenter {
         background-color:#aaa;
         margin-bottom:20px;
-        width:150;
-        height:150;
+        width:150px;
+        height:150px;
       }
 
       #video_attendee {
@@ -465,6 +465,14 @@ function showParticipants() {
 function makePresenter (participantId) {
   var participant = gapi.hangout.getLocalParticipantId();
   var iAmPresenter = (participantId === participant);
+
+  if (iAmPresenter) {
+    jQuery("#video_attendee").hide();
+    jQuery("#video_presenter").show();
+  } else {
+    jQuery("#video_attendee").show();
+    jQuery("#video_presenter").hide();
+  }
 
   console.log('Giving control to ', participantId);
   gapi.hangout.data.setValue('isPresenter', participantId);
