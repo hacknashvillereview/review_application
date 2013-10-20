@@ -74,7 +74,8 @@
           </div>
             {% for package in packages %}
           <div class="col-md-3 package">
-            <div class="package-content">
+            <div class="package-content" style="background:url( 'http://img.youtube.com/vi/{{ package.youtube_id }}/0.jpg' );">
+                <!-- http://img.youtube.com/vi/{{ package.youtube_id }}/0.jpg -->
                 <h2>{{ package.title }}</h2>
                 <span class="glyphicon glyphicon-play-circle"></span>
             </div>
