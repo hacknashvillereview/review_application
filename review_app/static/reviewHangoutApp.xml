@@ -334,7 +334,7 @@
   <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
-  <div id="ownerDiv"></div>
+  <div id="ownerDiv" class="container"></div>
 
   <div class="container" id="presenter">
     <div class="actions clearfix">
@@ -490,7 +490,7 @@ function init() {
 
     // Someone was set as the presenter
     if (payload.addedKeys[0].key === 'isPresenter') {
-      div.innerHTML = '<h3 style="color:white;">' +  person.person.displayName + ' is now the presenter</h3>';
+      div.innerHTML = '<p style="color:white; font-size:23px; margin: 0px; padding: 0px;">' +  person.person.displayName + ' is now the presenter</p>';
 
       iAmPresenter = (payload.addedKeys[0].value === participant);
 
