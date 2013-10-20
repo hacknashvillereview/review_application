@@ -20,7 +20,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from foxyutils import *
 
 PASSWORD_ALGORITHM = "sha1"
-PRODUCT_NAME = "ReviewTN Registration"
+PRODUCT_NAME = "Review Subscription"
 PRODUCT_PRICE = "20.00"
 
 @csrf_exempt
