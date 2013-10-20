@@ -34,6 +34,7 @@
       <order_total>24.38</order_total>
       <order_total>24.38</order_total>
       <customer_password>1aab23051b24582c5dc8e23fc595d505</customer_password>
+      <customer_password_salt>1aab23051b24582c5dc8e23fc595d505</customer_password_salt>
       <custom_fields>
         <custom_field>
           <custom_field_name>My_Cool_Text</custom_field_name>
@@ -46,7 +47,7 @@
       </custom_fields>
       <transaction_details>
         <transaction_detail>
-          <product_name>foo</product_name>
+          <product_name>Review Subscription</product_name>
           <product_price>20.00</product_price>
           <product_quantity>1</product_quantity>
           <product_weight>0.10</product_weight>
@@ -54,6 +55,7 @@
           <subscription_frequency>1m</subscription_frequency>
           <subscription_startdate>2007-07-07</subscription_startdate>
           <next_transaction_date>2007-08-07</next_transaction_date>
+          <subscription_enddate>2007-07-07</subscription_enddate>
           <shipto>John Doe</shipto>
           <category_description>Default for all products</category_description>
           <category_code>DEFAULT</category_code>

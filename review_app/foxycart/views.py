@@ -15,9 +15,13 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 import review_app
  
-from foxyutils import FoxyData
+from django.core.exceptions import ObjectDoesNotExist
+# from foxyutils import FoxyData
+from foxyutils import *
 
 PASSWORD_ALGORITHM = "sha1"
+PRODUCT_NAME = "Review Subscription"
+PRODUCT_PRICE = "20.00"
 
 @csrf_exempt
 def foxyfeed(request):
@@ -30,36 +34,41 @@ def foxyfeed(request):
     try:
       # IMPORTANT: unquote_plus is necessary for the non-ASCII binary that
       # FoxyCart sends.
+      valid_transaction = False
       data = FoxyData.from_crypted_str(urllib.unquote_plus(request.POST['FoxyData']), settings.FOXYCART_DATAFEED_KEY)
       for transaction in data.transactions:
+        for item in transaction.items:
+          if item['name'] == PRODUCT_NAME:
+            valid_transaction = True
 
-        # create a new django user
-        new_user = User.objects.create_user(transaction.customer_email, transaction.customer_email)
-        new_user.password = "{algorithm}${salt}${password_hash}".format(
-          algorithm=PASSWORD_ALGORITHM, 
-          salt=transaction.customer_password_salt,
-          password_hash=transaction.customer_password)
-        new_user.save()
+        if valid_transaction:
+          # check if this user exists already. If not, create one.
+          existing_user = User.objects.filter(username=transaction.customer_email)
+          if (len(existing_user) > 0):
+            existing_user[0].is_active = True # this doesn't work... :(
+            existing_user[0].save()
+          else:
+            # create a new django user
+            new_user = User.objects.create_user(transaction.customer_email, transaction.customer_email)
+            new_user.password = "{algorithm}${salt}${password_hash}".format(
+              algorithm=PASSWORD_ALGORITHM, 
+              salt=transaction.customer_password_salt,
+              password_hash=transaction.customer_password)
+            new_user.save()
 
-        # create a new review user
-        new_review_user = review_app.models.ReviewUser()
-        new_review_user.user = new_user
-        new_review_user.customer_id = transaction.customer_id
-        new_review_user.save()
+            # create a new review user
+            new_review_user = review_app.models.ReviewUser()
+            new_review_user.user = new_user
+            new_review_user.customer_id = transaction.customer_id
+            new_review_user.save()
 
-        # @todo sanity checks etc bf actually saving everything
+            # @todo sanity checks etc bf actually saving everything
 
-        # Your code goes here
-        # Make sure we don't have a duplicate transaction id
-        # Verify the pricing of the products
-        # Add the order to the database
- 
       return HttpResponse('foxy')
- 
+
     except Exception, e:
-	  # Something went wrong, handle the error...
+    # Something went wrong, handle the error...
       raise
- 
   return HttpResponseForbidden('Unauthorized request.')  # No FoxyData?  Not a POST?  We don't speak that.
 
 @csrf_exempt
@@ -69,9 +78,8 @@ def capture_foxyfeed(request):
   allow_overwrite = False
   capture_dir =  os.path.join(os.path.dirname(__file__), "fixtures")
 
-  logger = logging.getLogger('foxycart')
-  logger.error(capture_dir)
-
+  #logger = logging.getLogger('foxycart')
+  #logger.error(capture_dir)
   #print capture_dir
 
   if save_request_object:

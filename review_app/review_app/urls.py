@@ -10,6 +10,7 @@ import api, foxycart
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^review/', TemplateView.as_view(template_name='base.html')),
+    url(r'^feedback/', TemplateView.as_view(template_name='feedback.html')),
 
     # Examples:
     # url(r'^$', 'review_app.views.home', name='home'),
@@ -24,7 +25,8 @@ urlpatterns = patterns('',
     #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     url(r'^api/', include('api.urls')),
 
-    url(r"^foxycart/", include(foxycart.urls)),
+    url(r"^foxycart/", include('foxycart.urls')),
+    url(r"^foxycart/checkout", TemplateView.as_view(template_name='foxycart_checkout_template.html')),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {"template_name": "login.html"}),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',

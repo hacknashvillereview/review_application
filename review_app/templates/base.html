@@ -6,6 +6,7 @@
         <title>Review | by Hack Nashvillians</title>
 
         <link href="{% static 'js/bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+         <link href="{% static 'css/review-app.css' %}" rel="stylesheet">
 
         <script src="{% static 'js/bower_components/less/dist/less-1.4.2.min.js' %}"></script>
         <script data-main="{% static 'js/application' %}" src="{% static 'js/bower_components/requirejs/require.js' %}"></script>
@@ -39,7 +40,8 @@
 
     </body>
 
-
+{% block custom_script %}
+{% endblock %}
 
 <script type="text/javascript">
 var helper = (function() {
