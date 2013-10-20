@@ -17,7 +17,7 @@ body {
 }
 
 .jumbotron {
-	background:url( '/static/images/home-bg.jpg' ) 0 -150px #aaa;
+	background:url( '/static/images/home-bg.jpg' ) center -150px #aaa;
 	padding-top:40px;
 	padding-bottom:0;
 	position:fixed;
