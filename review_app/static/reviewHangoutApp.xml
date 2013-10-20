@@ -481,7 +481,7 @@ function init() {
   gapi.hangout.data.onStateChanged.add(function (payload) {
     var div = document.getElementById('ownerDiv');
     var participant = gapi.hangout.getLocalParticipantId();
-    var person = gapi.hangout.getParticipantById(payload.addedKeys[0].value);
+    var person = gapi.hangout.getParticipantById(participant);
     
     var iAmPresenter;
 
