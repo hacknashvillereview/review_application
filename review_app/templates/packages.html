@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="/assets/img/ico/favicon.png">
+    <link rel="shortcut icon" href="{% static 'images/ico/favicon.png' %}">
 
     <title>Package Archive | Review</title>
 
@@ -37,23 +37,6 @@
           <a class="navbar-brand" href="#"><img src="{% static 'images/review-logo.png' %}"></a>
         </div>
         <div class="navbar-collapse collapse">
-          <!-- <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul> -->
           <ul class="nav navbar-nav pull-right">
             <li><a href="#">Sign out</a></li>            
           </ul>
@@ -74,11 +57,11 @@
           </div>
             {% for package in packages %}
           <div class="col-md-3 package">
-            <div class="package-content" style="background:url( 'http://img.youtube.com/vi/{{ package.youtube_id }}/0.jpg' );">
+            <a href="../package/{{ package.id }}"><div class="package-content" style="background:url( 'http://img.youtube.com/vi/{{ package.youtube_id }}/0.jpg' ); background-size:265px ;">
                 <!-- http://img.youtube.com/vi/{{ package.youtube_id }}/0.jpg -->
-                <h2><a href="../package/{{ package.id }}">{{ package.title }}</a></h2>
+                <h2>{{ package.title }}</h2>
                 <span class="glyphicon glyphicon-play-circle"></span>
-            </div>
+            </div></a>
             <p>{{ package.start|date:"l, F dS, Y" }}</p>
           </div>
             {% endfor %}

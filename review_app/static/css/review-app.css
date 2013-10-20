@@ -87,11 +87,8 @@ body.package-archive .row {
 	background-color:#aaa;
 }
 
-.package-content:hover span {
-	color:#333;
-}
-
 .package-content h2 {
+	background:rgba(0,0,0,.65);
 	color:#fff;
 	display:block;
 	font-size:20px;
@@ -99,13 +96,16 @@ body.package-archive .row {
 	line-height:25px;
 	margin:0;
 	padding:10px;
-
 	text-shadow:0px 1px 1px #000;
 }
 
+.package:hover a {
+	text-decoration:none;
+}
+
 .package-content span {
-	color:#777;
-	display:block;
+	color:#fff;
+	display:none;
 	font-size:50px;
 	right:0;
 	left:0;
@@ -117,7 +117,61 @@ body.package-archive .row {
 	transition: color 0.25s ease;
 }
 
+.package-content:hover span {
+	display:block;
+}
+
 .package p {
 	font-size:12px;
 	margin-top:10px;
+}
+
+/*
+	Package view
+*/
+
+body.single-package .section-header {
+	margin-top:70px;
+}
+
+body.single-package .row {
+	margin-bottom:50px;
+	min-height:450px;
+}
+
+body.single-package .section-header small {
+	font-size:15px;
+	padding-left:10px;
+}
+
+.demos {
+
+}
+
+.feedback {
+}
+
+.feedback ul {
+	border-top:1px solid #ccc;
+	margin:20px 0;
+	padding:0;
+	list-style-type:none;
+}
+
+.feedback ul li {
+	border:1px solid #ccc;
+	border-top:0;
+	padding:10px;
+}
+
+.feedback ul li:nth-child(odd) {
+	background:#eee;
+}
+
+.feedback ul li span {
+	color:#ccc;
+}
+
+.release-notes {
+	margin-top:-40px;
 }
