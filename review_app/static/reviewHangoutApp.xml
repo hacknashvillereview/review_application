@@ -149,8 +149,10 @@ function init() {
     } else if (payload.addedKeys[0].key === 'tookControl') {
       if (payload.addedKeys[0].value !== participant) {
         gapi.hangout.av.setMicrophoneMute(true);
+        gapi.hangout.av.setCameraMute(true);
       } else {
         gapi.hangout.av.setMicrophoneMute(false);
+        gapi.hangout.av.setCameraMute(false);
       }
 
     // Someone raised a hand.
