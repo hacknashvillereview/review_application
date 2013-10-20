@@ -71,7 +71,7 @@ footer {
 }
 
 footer p {
-	color:white;
+	color:#e75261;
 	padding-bottom:20px;
 	text-align:center;
 }
@@ -79,6 +79,29 @@ footer p {
 .grey-logo {
 	display:block;
 	margin:20px auto;
+}
+
+.hack-nashville {
+	background:#000;
+	border-top-right-radius:4px;
+	border-top-left-radius:4px;
+	padding:20px;
+}
+
+.hack-nashville img {
+	display:block;
+}
+
+.hack-nashville p {
+	color:#f05829;
+	display:block;
+	padding-top:5px;
+	padding-left:25px;
+}
+
+.hack-nashville a {
+	color:#f05829;
+	text-decoration:underline;
 }
 
 
