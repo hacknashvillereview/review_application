@@ -20,4 +20,4 @@ class FeedbackItemSerializer(serializers.HyperlinkedModelSerializer):
 class ReviewUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ReviewUser
-        fields = ('id', 'customer_id')
+        fields = ('id', 'customer_id', 'username')
