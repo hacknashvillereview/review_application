@@ -34,4 +34,5 @@ urlpatterns = patterns('',
 
     url(r"^protected/", 'review_app.views.protected_method', name="protected"),
     url(r"^packages/", 'review_app.views.packages_method', name="packages"),
+    url(r'^package/(?P<package_id>[0-9]+)/$', 'review_app.views.package_method', name="package"),
 )

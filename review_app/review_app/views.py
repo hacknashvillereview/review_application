@@ -1,4 +1,4 @@
-
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
@@ -22,3 +22,17 @@ def packages_method(request):
     return render_to_response("packages.html",
         {"packages": ReviewSession.objects.filter(facilitator=rUser.id)},
         context_instance=RequestContext(request))
+
+
+@login_required
+def package_method(request, package_id):
+    rUser = ReviewUser.objects.get(user=request.user.id)
+
+    review_session = ReviewSession.objects.get(pk=package_id)
+    if not rUser.id == review_session.facilitator_id:
+        raise PermissionDenied("You do not have access to package %s." % package_id)
+
+    return render_to_response("package.html",
+        {"package": review_session},
+        context_instance=RequestContext(request))
+
