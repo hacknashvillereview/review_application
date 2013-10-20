@@ -384,14 +384,14 @@
         </ul>
       </div>
 
-<div id="ownerDiv"></div>
+    <div id="ownerDiv"></div>
 
-<div id="participantAlerts"></div>
-
+    <div id="participantAlerts"></div>
 
     </div>
+  </div>
 
-  <div class="container" id="attendee">
+  <div class="container" id="attendee" style="display:none;">
 
       <div class="actions clearfix">
         <div class="title pull-left">
