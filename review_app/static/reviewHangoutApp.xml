@@ -211,17 +211,15 @@
       }
 
       #video_presenter {
-        margin-bottom:20px;
-        margin-left:50%;
+        marigin: 0 auto 20px;
         width:150px;
         height:80px;
       }
 
       #video_attendee {
-        margin-bottom:20px;
-        margin-left:50%;
-        width:400px;
-        height:230px;
+        marigin: 0 auto 20px;
+        width: 400px;
+        height: 230px;
       }
 
       .attendees .list-group {
