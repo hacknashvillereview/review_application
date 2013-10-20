@@ -482,7 +482,7 @@ function init() {
   gapi.hangout.data.onStateChanged.add(function (payload) {
     var div = document.getElementById('ownerDiv');
     var participant = gapi.hangout.getLocalParticipantId();
-    var person = gapi.hangout.getParticipantById(payload.addedKeys[0].value);
+    var person = gapi.hangout.getParticipantById(participant);
     
     var iAmPresenter;
 
@@ -490,7 +490,7 @@ function init() {
 
     // Someone was set as the presenter
     if (payload.addedKeys[0].key === 'isPresenter') {
-      div.innerHTML = '<h3>' +  person.person.displayName + ' is now the presenter</h3>';
+      div.innerHTML = '<h3 style="color:white;">' +  person.person.displayName + ' is now the presenter</h3>';
 
       iAmPresenter = (payload.addedKeys[0].value === participant);
 
