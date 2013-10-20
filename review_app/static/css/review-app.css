@@ -43,11 +43,12 @@ footer p {
 */
 
 body.package-archive .section-header {
-	margin-top:50px;
+	margin-top:70px;
 }
 
 body.package-archive .row {
 	margin-bottom:50px;
+	min-height:450px;
 }
 
 .package {
