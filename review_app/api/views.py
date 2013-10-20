@@ -7,8 +7,8 @@ from rest_framework import generics, filters
 from rest_framework.reverse import reverse
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
-from api.serializers import ReviewSessionSerializer, FeedbackItemSerializer, ReviewUserSerializer
-from review_app.models import ReviewSession, FeedbackItem, ReviewUser
+from api.serializers import ReviewSessionSerializer, FeedbackItemSerializer, ReviewUserSerializer, DemoSerializer
+from review_app.models import ReviewSession, FeedbackItem, ReviewUser, Demo
 
 
 class ApiRoot(APIView):
@@ -18,12 +18,12 @@ class ApiRoot(APIView):
 
     def get(self, request):
         return Response({
-            'hello-world': {
-                'helloworld': reverse("helloworld", request=request),
-            },
             'reviewSession': {
                 'reviewSession': reverse("reviewsession", request=request),
                 },
+            'demo': {
+                'demo': reverse("demo", request=request),
+            },
             'feedback': {
                 'feedback': reverse("feedbackitem", request=request),
             },
@@ -51,10 +51,21 @@ class ReviewSessionDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ReviewSessionSerializer
 
 
+class DemoList(generics.ListCreateAPIView):
+    queryset = Demo.objects.all()
+    serializer_class = DemoSerializer
+    filter_fields = ('session',)
+
+
+class DemoDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Demo.objects.all()
+    serializer_class = DemoSerializer
+
+
 class FeedbackItemList(generics.ListCreateAPIView):
     queryset = FeedbackItem.objects.all()
     serializer_class = FeedbackItemSerializer
-    filter_fields = ('session', 'who',)
+    filter_fields = ('demo', 'who',)
 
 
 class FeedbackItemDetail(generics.RetrieveUpdateDestroyAPIView):

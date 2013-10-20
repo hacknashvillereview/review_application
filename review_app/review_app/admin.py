@@ -1,4 +1,4 @@
 from django.contrib import admin
-from models import ReviewUser, ReviewSession, FeedbackItem
+from models import ReviewUser, ReviewSession, FeedbackItem, Demo
 
-admin.site.register((ReviewUser, FeedbackItem, ReviewSession))
+admin.site.register((ReviewUser, Demo, FeedbackItem, ReviewSession))
