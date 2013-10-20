@@ -24,6 +24,8 @@
     </head>
     <body>
 
+        <!-- TODO: Change this up or put all the Google+ stuff in a different file? -->
+
         <review-navigation></review-navigation>
 
         <home-module>
@@ -37,6 +39,8 @@
                 data-bind='visible: $root.currentSection().id === "review"'>
             </review-content>
         </review-module>
+
+        {% block content %}{% endblock %}
 
     </body>
 

@@ -7,6 +7,10 @@
 
 <p>You can <a href="/accounts/logout">logout</a>.</p>
 
+
+{{ perms }}
+
+
 {% if perms.foxy.current %}
 <p>You are paid with Foxycart.</p>
 {% else %}
