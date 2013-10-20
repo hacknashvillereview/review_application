@@ -334,8 +334,9 @@
   <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
+  <div id="ownerDiv"></div>
+
   <div class="container" id="presenter">
-    <div id="ownerDiv"></div>
     <div class="actions clearfix">
       <button type="button" class="btn btn-default pull-right pause"><span class="glyphicon glyphicon-plus"></span>&nbsp;Notes</button>
       <!--
