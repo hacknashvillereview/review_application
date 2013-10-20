@@ -11,6 +11,23 @@
 	height:35px;
 }
 
+footer {
+	background:#bf1e2e;
+	padding-top:20px;
+	border: 1px solid transparent;
+}
+
+footer img {
+	display:block;
+	margin:0 auto;
+}
+
+footer p {
+	color:#e75261;
+	padding-bottom:20px;
+	text-align:center;
+}
+
 /*
 	FoxyCart Checkout and Receipt Styles
 */
@@ -23,6 +40,14 @@
 /*
 	Package list
 */
+
+body.package-archive .section-header {
+	margin-top:50px;
+}
+
+body.package-archive .row {
+	margin-bottom:50px;
+}
 
 .package {
 	margin-top:30px;
@@ -42,7 +67,7 @@
 	font-size:100px;
 	font-weight:bold;
 	margin:0 auto;
-	padding:30px 0 0 0;
+	padding:10px 0 0 0;
 	text-align:center;
 }
 
