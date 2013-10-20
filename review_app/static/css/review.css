@@ -55,6 +55,7 @@ body {
 	margin-bottom:20px;
 	width:300px;
 	height:150px;
+	border:1px solid #aaa;
 }
 
 .main-content h2 {
