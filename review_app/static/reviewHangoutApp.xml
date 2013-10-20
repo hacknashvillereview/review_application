@@ -338,7 +338,9 @@
     <div id="ownerDiv"></div>
     <div class="actions clearfix">
       <button type="button" class="btn btn-default pull-right pause"><span class="glyphicon glyphicon-plus"></span>&nbsp;Notes</button>
+      <!--
       <button type="button" class="btn btn-default pull-right pause"><span class="glyphicon glyphicon-pause"></span></button>
+        -->
       <div class="btn-group pull-right">
         <button id="startPresenting" style="visibility:hidden;" onClick="startPresenting()" type="button" class="btn btn-default active"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;Present</button>
         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Collaborate</button>
