@@ -210,10 +210,17 @@
         margin-left:10px;
       }
 
-      .video {
+      #video_presenter {
         background-color:#aaa;
         margin-bottom:20px;
-        width:100%;
+        width:150;
+        height:150;
+      }
+
+      #video_attendee {
+        background-color:#aaa;
+        margin-bottom:20px;
+        width:400px;
         height:400px;
       }
 
@@ -327,7 +334,7 @@
   <body class="package">
 
   <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
-  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
   <div class="container" id="presenter">
     <div class="actions clearfix">
@@ -341,7 +348,7 @@
         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Collaborate</button>
       </div>
     </div>
-    <div class="video">
+    <div id="video_presenter">
 
     </div>
     <div class="row attendees">
@@ -392,7 +399,7 @@
         </div>
         
       </div>
-      <div class="video">
+      <div id="video_attendee">
 
       </div>
       <div class="feedback clearfix">
