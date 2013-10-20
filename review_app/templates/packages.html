@@ -28,4 +28,126 @@
 {% endfor %}
 
 {% endif %}
+{% load staticfiles %}
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/assets/img/ico/favicon.png">
+
+    <title>Package Archive | Review</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'js/bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/review-app.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/assets/js/html5shiv.js"></script>
+      <script src="/assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body class="package-archive">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="{% static 'images/review-logo.png' %}"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <!-- <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul> -->
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="#">Sign out</a></li>            
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="section-header">
+            <h1>Review Catalog</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-3 add package">
+            <div class="package-content">
+                <p>+</p>
+            </div>
+            <p>Create a new session.</p>
+          </div>
+          <div class="col-md-3 package">
+            <div class="package-content">
+                <h2>Marketing site review</h2>
+                <span class="glyphicon glyphicon-play-circle"></span>
+            </div>
+            <p>Wednesday, July 5th, 2012</p>
+          </div>
+          <div class="col-md-3 package">
+            <div class="package-content">
+                <h2>Team API, Team Marketing, Team Admin, Team UX</h2>
+                <span class="glyphicon glyphicon-play-circle"></span>
+            </div>
+            <p>Wednesday, July 5th, 2012</p>
+          </div>
+          <div class="col-md-3 package">
+            <div class="package-content">
+                <h2>Thursday Demo</h2>
+                <span class="glyphicon glyphicon-play-circle"></span>
+            </div>
+            <p>Wednesday, July 5th, 2012</p>
+          </div>
+          <div class="col-md-3 package">
+            <div class="package-content">
+                <h2>Demo day for Team Orange &amp; Team Green</h2>
+                <span class="glyphicon glyphicon-play-circle"></span>
+            </div>
+            <p>Wednesday, July 5th, 2012</p>
+          </div>
+          <div class="col-md-3 package">
+            <div class="package-content">
+                <h2>Wednesday Demo</h2>
+                <span class="glyphicon glyphicon-play-circle"></span>
+            </div>
+            <p>Wednesday, July 5th, 2012</p>
+          </div>
+        </div>
+    </div> <!-- /container -->
+    <footer>
+      <img src="/static/images/review-logo-white.png" class="grey-logo">
+      <p>&copy; Review 2013</p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/assets/js/jquery-2.0.3.min.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
+  </body>
+</html>
