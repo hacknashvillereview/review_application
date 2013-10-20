@@ -108,8 +108,8 @@ var defaultGlobalState = {
 }
 
 function isPresenter() {
-  console.log(gapi.hangout.data.getValue('presenterId'));
-  console.log(gapi.hangout.getLocalParticipantId()); 
+  console.log('isPresenter, presenterId: ' + gapi.hangout.data.getValue('presenterId'));
+  console.log('isPresenter, getLocalParticipantId: ' + gapi.hangout.getLocalParticipantId()); 
   return (gapi.hangout.data.getValue('presenterId') == gapi.hangout.getLocalParticipantId());
 }
 
@@ -130,17 +130,20 @@ function init() {
           document.getElementById('muteParticipants').style.visibility = 'visible';
 
           var globalPresenterId = gapi.hangout.data.getValue('presenterId');
-          console.log(globalPresenterId);
+          console.log('presenterID = ' + globalPresenterId);
 
-          // set defaults if globalState is empty
-          gapi.hangout.data.setValue('presenterId',gapi.hangout.getLocalParticipantId());
-          gapi.hangout.data.setValue('isPresenting',false);
-          gapi.hangout.data.setValue('isPaused',true);
-          gapi.hangout.data.setValue('releaseNotesUrl','');
+          if (typeof(globalPresenterId) == 'undefined') {
+            gapi.hangout.data.setValue('presenterId',''+gapi.hangout.getLocalParticipantId());
+            gapi.hangout.data.setValue('isPresenting','false');
+            gapi.hangout.data.setValue('isPaused','true');
+            gapi.hangout.data.setValue('releaseNotesUrl','');
+          }
 
           updateLayout();
 
-          gapi.hangout.data.onStateChanged.add('updateLayout');
+          console.log('attempting to set state change event...');
+          gapi.hangout.data.onStateChanged.add(updateLayout);
+          console.log('set state change event...');
 
         }
       });
