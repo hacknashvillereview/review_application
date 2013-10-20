@@ -76,7 +76,7 @@
           <div class="col-md-3 package">
             <div class="package-content" style="background:url( 'http://img.youtube.com/vi/{{ package.youtube_id }}/0.jpg' );">
                 <!-- http://img.youtube.com/vi/{{ package.youtube_id }}/0.jpg -->
-                <h2>{{ package.title }}</h2>
+                <h2><a href="../package/{{ package.id }}">{{ package.title }}</a></h2>
                 <span class="glyphicon glyphicon-play-circle"></span>
             </div>
             <p>{{ package.start|date:"l, F dS, Y" }}</p>
