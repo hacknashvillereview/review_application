@@ -421,9 +421,6 @@ function enablePresenterVideo(presenter_id) {
   canvas = gapi.hangout.layout.getVideoCanvas();
   presenter_feed = gapi.hangout.layout.createParticipantVideoFeed(presenter_id);
   canvas.setVideoFeed(presenter_feed);
-  presenter_name = getDisplayName(presenter_id);
-  var div = document.getElementById('ownerDiv');
-  div.innerHTML = presenter_name;
   if (is_presenter_view) {
     jQuery("#presenter").show();
     jQuery("#attendee").hide();
@@ -560,17 +557,6 @@ somethingIsWrongHandler = function (participantId) {
   ul.innerHTML += "<li class=\"list-group-item alert\">"+person.person.displayName+" has a problem!</li>";
 
 };
-
-function getDisplayName(participant_id) {
-  participants = gapi.hangout.getParticipants();
-  for (var participant in participants) {
-    if (participant.id === participant_id) {
-      return participant.person.displayName;
-    }
-  }
-  return "Unknown User";
-}
-
 
 // Wait for gadget to load.                                                       
 gadgets.util.registerOnLoadHandler(init);
