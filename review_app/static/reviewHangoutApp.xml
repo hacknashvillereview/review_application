@@ -516,7 +516,9 @@ function init() {
 
     // Presenter started the demo. Mute all mics.
     } else if (payload.addedKeys[0].key === 'tookControl') {
-      if (payload.addedKeys[0].value !== participant) {
+      if (payload.addedKeys[0].value === 'done') {
+        // do nothing
+      } else if (payload.addedKeys[0].value !== participant) {
         displayPresenterName(gapi.hangout.getParticipantById(payload.addedKeys[0].value).person.displayName)
         gapi.hangout.av.setMicrophoneMute(true);
         gapi.hangout.av.setCameraMute(true);
@@ -525,7 +527,7 @@ function init() {
         gapi.hangout.av.setMicrophoneMute(false);
         gapi.hangout.av.setCameraMute(false);
       }
-
+      gapi.hangout.data.setValue('tookControl', 'done');
     // Someone raised a hand.
     } else if (payload.addedKeys[0].key === 'raisedHand') {
       raisedHandHandler(payload.addedKeys[0].value);
