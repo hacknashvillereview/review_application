@@ -10,3 +10,78 @@
 .navbar-header img {
 	height:35px;
 }
+
+/*
+	Package list
+*/
+
+.package {
+	margin-top:30px;
+}
+
+.add .package-content {
+	background:#ddd;
+}
+
+.add .package-content:hover {
+	background:#fff;
+}
+
+.add .package-content p {
+	color:#777;
+	display:block;
+	font-size:100px;
+	font-weight:bold;
+	margin:0 auto;
+	padding:30px 0 0 0;
+	text-align:center;
+}
+
+.package-content {
+	background-color:#777;
+	border:1px solid #aaa;
+	border-bottom:10px solid #aaa;
+	cursor:pointer;
+	height:200px;
+	position:relative;
+	transition: background-color 0.25s ease;
+}
+
+.package-content:hover {
+	background-color:#aaa;
+}
+
+.package-content:hover span {
+	color:#333;
+}
+
+.package-content h2 {
+	color:#fff;
+	display:block;
+	font-size:20px;
+	font-weight:normal;
+	line-height:25px;
+	margin:0;
+	padding:10px;
+
+	text-shadow:0px 1px 1px #000;
+}
+
+.package-content span {
+	color:#777;
+	display:block;
+	font-size:50px;
+	right:0;
+	left:0;
+	padding-right:20px;
+	position:absolute;
+	top:auto;
+	bottom:20px;
+	text-align:right;
+	transition: color 0.25s ease;
+}
+
+.package p {
+	font-size:12px;
+	margin-top:10px;
+}
