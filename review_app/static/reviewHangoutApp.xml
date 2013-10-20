@@ -211,11 +211,15 @@
       }
 
       #video_presenter {
+        margin-bottom:20px;
+        margin-left:50%;
         width:150px;
         height:80px;
       }
 
       #video_attendee {
+        margin-bottom:20px;
+        margin-left:50%;
         width:400px;
         height:230px;
       }
@@ -333,10 +337,8 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
   <div class="container" id="presenter">
+    <div id="ownerDiv"></div>
     <div class="actions clearfix">
-      <div class="title pull-left">
-        <h3>Thursday team demo day</h3>
-      </div>
       <button type="button" class="btn btn-default pull-right pause"><span class="glyphicon glyphicon-plus"></span>&nbsp;Notes</button>
       <button type="button" class="btn btn-default pull-right pause"><span class="glyphicon glyphicon-pause"></span></button>
       <div class="btn-group pull-right">
@@ -367,6 +369,8 @@
       -->
       </div>
       <div class="col-md-6">
+        <ul class="list-group alerts" id="participantAlerts"></ul>
+<!--
         <ul class="list-group alerts">
           <li class="list-group-item alert">
             mtndewlover1978 reported a problem.
@@ -378,23 +382,14 @@
             Martin has a Question.
           </li>
         </ul>
+  -->
       </div>
-
-    <div id="ownerDiv"></div>
-
-    <div id="participantAlerts"></div>
 
     </div>
   </div>
 
   <div class="container" id="attendee" style="display:none;">
 
-      <div class="actions clearfix">
-        <div class="title pull-left">
-          <h3>Thursday team demo day</h3>
-        </div>
-        
-      </div>
       <div id="video_attendee">
 
       </div>
@@ -541,8 +536,9 @@ raiseHand = function () {
 raisedHandHandler = function (participantId) {
   var person = gapi.hangout.getParticipantById(participantId);
 
-  var div = document.getElementById('participantAlerts');
-  div.innerHTML += "<div>"+person.person.displayName+" raised a hand!</div>";
+  var ul = document.getElementById('participantAlerts');
+  ul.innerHTML += "<li class=\"list-group-item alert\">"+person.person.displayName+" raised a hand!</li>";
+
 };
 
 // Wait for gadget to load.                                                       
