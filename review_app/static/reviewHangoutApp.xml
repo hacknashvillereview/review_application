@@ -534,6 +534,7 @@ function init() {
     } else if (payload.addedKeys[0].key === 'collaborate') {
       gapi.hangout.av.setMicrophoneMute(false);
       gapi.hangout.av.setCameraMute(false);
+      gapi.hangout.data.setValue('collaborate', 'done');
     }
   });
 
