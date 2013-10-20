@@ -64,6 +64,12 @@ class FoxyDataVectorTest(unittest.TestCase):
  
   def test_from_crypted_str(self):
     crypted_str = ARC4(Constants.SECRET_KEY).crypt(self._get_test_data("testdata.xml"))
+    # writing encrypted file
+    #capture_file_path = os.path.join(os.path.dirname(__file__), "fixtures", "test1.encrypted")
+    #f = open(capture_file_path, 'w')
+    #f.write(crypted_str)
+    #f.close()
+    # end writing encrypted file
     vector = FoxyData.from_crypted_str(crypted_str, Constants.SECRET_KEY)
     self._test_it_hard(vector)
  
@@ -71,9 +77,9 @@ class FoxyDataVectorTest(unittest.TestCase):
   # You will need to provide captured data from the foxycart feed in order 
   # to test properly.  See the capture_foxyfeed view for data capture.
   def test_sucessfull_order(self):
-    self.assertFalse(True,
-                     "Update the test_successfull_order method with your testdata")
-    crypted_data = self._get_test_data("yourtestdata.encrypted")
+    #self.assertFalse(True,
+    #                 "Update the test_successfull_order method with your testdata")
+    crypted_data = self._get_test_data("test1.encrypted")
     c = Client()
     response = c.post('/foxycart/xmlfeed/', { "FoxyData" : crypted_data })
     self.assertEqual(response.content, "foxy", "View for xmlfeed did not return foxy")
@@ -83,7 +89,7 @@ class FoxyDataVectorTest(unittest.TestCase):
   def test_duplicated_order(self):
     self.assertFalse(True,
                      "Update the test_duplicated_order method with your testdata")
-    crypted_data = self._get_test_data("yourtestdata.encrypted")
+    crypted_data = self._get_test_data("test1.encrypted")
     c = Client()
     response = c.post('/foxycart/xmlfeed/', { "FoxyData" : crypted_data })
     self.assertEqual(response.content, "foxy", "View for xmlfeed did not return foxy")
@@ -105,7 +111,7 @@ class FoxyDataVectorTest(unittest.TestCase):
                         "View for xmlfeed returned foxy for corrupted data")
 
 
-Constants.SECRET_KEY = 'abc123akp8ak7898a,.aoeueaouaoeuaoeu'
+Constants.SECRET_KEY = 'pv8CiqSlJw5rPzjrSgiKItPQgst5EtFXSHu5XhgxDgTmJ3DsdM4LaItg6QfE'
  
 if __name__ == '__main__':
   unittest.main()

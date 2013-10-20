@@ -49,6 +49,7 @@ class FoxyData:
       self.customer_email = extract_kv_node(node, 'customer_email')
       self.customer_password = extract_kv_node(node, 'customer_password')
       self.customer_password_salt = extract_kv_node(node, 'customer_password_salt')
+      self.order_total = extract_kv_node(node, 'order_total')
  
       self.attributes = attrs = {}
       self.items = items = attrs['items'] = []
@@ -61,7 +62,8 @@ class FoxyData:
       self.transaction_details = attrs['detail'] = []
       for details in node.getElementsByTagName('transaction_detail'):
         item = {'product_code': extract_kv_node(details, 'product_code')}
- 
+        item['name'] = extract_kv_node(details, 'product_name')
+
         for key in ['subscription_startdate', 'next_transaction_date']:
           date_str = extract_kv_node(details, key)
           try:
