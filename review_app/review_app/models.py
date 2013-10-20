@@ -15,6 +15,7 @@ class ReviewSession(models.Model):
     facilitator = models.ForeignKey(ReviewUser, related_name='+')
     start = models.DateTimeField(auto_now_add=True)
     end = models.DateTimeField(blank=True, null=True)
+    video_url = models.URLField(max_length=4096)
 
 
 class Demo(models.Model):
